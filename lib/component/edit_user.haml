@@ -1,0 +1,19 @@
+%form(name="edit_user" onsubmit="return false;")
+  .form-group
+    %label{:for => "name"} Name
+    %input.form-control(type="text" ng-show="c.a.model.me==null" readonly)/
+    %input.form-control(name="name" type="text" ng-hide="c.a.model.me==null" ng-model="c.a.model.me.name" required)/
+  -#.form-group
+  -#  %label{:for => "language"} Language
+  -#  %select.form-control(name="language" ng-model="language" ng-init="language='{{ a.user.language }}'")
+  -#    {% for value, label in language_list %}
+  -#    {% if value == user.language %}
+  -#    %option(value="{{ value }}" selected) {{ label }}
+  -#    {% else %}
+  -#    %option(value="{{ value }}") {{ label }}
+  -#    {% endif %}
+  -#    {% endfor %}
+  %div
+    %button.btn.btn-primary(ng-hide="c.a.model.edited('me')" disabled) Update
+    %button.btn.btn-primary(ng-show="c.a.model.edited('me') && c.isCompleted != false" ng-click="c.me_update()") Update
+    %button.btn.btn-primary(ng-show="c.a.model.edited('me') && c.isCompleted == false" disabled) Processing...

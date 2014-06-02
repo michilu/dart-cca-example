@@ -1,0 +1,4 @@
+build:
+  haml: make resource
+  sass: make resource
+loglevel: info

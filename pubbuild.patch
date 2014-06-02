@@ -1,0 +1,9 @@
+diff --git a/pubspec.yaml b/pubspec.yaml
+index 315554d..1d7052b 100644
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+@@ -11,3 +11,5 @@ dependencies:
+ dev_dependencies:
+   unittest: any
++transformers:
++- chrome

@@ -1,0 +1,3 @@
+[submodule "submodule/discovery_api_dart_client_generator"]
+	path = submodule/discovery_api_dart_client_generator
+	url = https://github.com/dart-gde/discovery_api_dart_client_generator.git

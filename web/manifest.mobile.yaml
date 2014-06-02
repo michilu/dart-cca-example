@@ -1,0 +1,6 @@
+packageId: biz.blueoceans.demo.dart-cca-example
+versionCode: 1
+CFBundleVersion: "1.1.1"
+ios:
+  oauth2:
+    client_id: client_id.apps.googleusercontent.com

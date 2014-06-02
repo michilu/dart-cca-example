@@ -1,0 +1,9 @@
+.col-lg-12.col-md-12(app)
+  %h2 Sign up
+  %form(name="signup" onsubmit="return false;")
+    .form-group
+      %label{:for => "name"} Name
+      %input.form-control(name="name" type="text" ng-model="name" required)
+    %div
+      %button.btn.btn-primary(ng-show="signup.pristine||signup.invalid" disabled) Sign up
+      %button.btn.btn-primary(ng-hide="signup.pristine||signup.invalid" ng-click="a.me_create(name)") Sign up

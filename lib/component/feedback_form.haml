@@ -1,0 +1,19 @@
+%form#feedback.modal(name="feedbackForm" action="" method="POST"
+                          ng-attr-action="{{c.action_url}}"
+                          onsubmit="return false;"
+                          tabindex="-1"
+                          ng-style="{'z-index': '${1050 + index*10}'}"
+                          role="dialog" aria-labelledby="modalLabel"
+                          style="display:block;")
+ .modal-dialog
+  .modal-content
+   .modal-header
+    %a.close(ng-click="c.ok($event)") &times;
+    %h3#modalLabel.modal-title feedback
+   .modal-body
+    %textarea#entry_0.form-control(name="entry.0.single" rows="8" ng-model="c.description" placeholder="messages..." required)
+    %input#entry_1(type="hidden" name="entry.1.single" value="{{ VERSIONS }}")
+    %input#entry_2(type="hidden" name="entry.2.single")
+   .modal-footer
+    %a.btn.btn-default(ng-click="c.ok($event)") close
+    %button.btn.btn-primary(type="submit" ng-disabled="feedbackForm.invalid" ng-click="c.submit($event)") send feedback

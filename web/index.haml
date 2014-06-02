@@ -1,0 +1,31 @@
+!!!
+%html(ng-app)/
+%meta(charset="UTF-8")
+%meta(http-equiv="X-UA-Compatible" content="IE=edge")
+%meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+%title An example of Cordova Chrome Apps written in AngularDart.
+:css
+  .ng-show {
+    display: block !important;
+  }
+  [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+    display: none !important;
+  }
+  body {
+    padding-top: 100px;
+  }
+
+%link(rel="stylesheet" href="ionic-1.0.0-beta.6/css/ionic.min.css")
+%script(src="js/browser_dart_csp_safe.js")
+%script(src="packages/chrome/bootstrap.js" defer)
+%script(src="packages/shadow_dom/shadow_dom.min.js")
+%script(src="main.dart" type="application/dart")
+%body(app)/
+
+%nav-component(a="a")
+
+.container
+  .row
+    %ng-view
+
+%footer-component

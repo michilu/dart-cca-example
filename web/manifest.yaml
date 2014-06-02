@@ -1,0 +1,26 @@
+manifest_version: 2
+name: DartCCA
+version: "1"
+minimum_chrome_version: "23"
+icons:
+  16:   icons/icon-16.png
+  48:   icons/icon-48.png
+  57:   icons/icon-57.png
+  72:   icons/icon-72.png
+  114:  icons/icon-114.png
+  120:  icons/icon-120.png
+  128:  icons/icon-128.png
+  144:  icons/icon-144.png
+  152:  icons/icon-152.png
+app:
+  background:
+    scripts:
+    - js/main.js
+permissions:
+- identity
+- storage
+- "*://*/*"
+oauth2:
+  client_id: client_id.apps.googleusercontent.com
+  scopes:
+  - https://www.googleapis.com/auth/userinfo.email

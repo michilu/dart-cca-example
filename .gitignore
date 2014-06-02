@@ -1,0 +1,23 @@
+.DS_Store
+.sass-cache
+Gemfile.lock
+build
+lib/version
+packages
+pubspec.lock
+pubspec.yaml.orig
+pubspec.yaml.rej
+release
+submodule/dart_echo_v1_api_client
+tags
+
+syntax: glob
+
+*.css
+*.html
+*.js
+*.sw?
+*~
+web/manifest*.json
+
+syntax: regexp

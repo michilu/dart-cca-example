@@ -1,0 +1,2 @@
+#!/bin/sh
+/Applications/dart/chromium/Chromium.app/Contents/MacOS/Chromium --disable-web-security

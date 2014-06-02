@@ -1,0 +1,26 @@
+.col-lg-12.col-md-12(app)
+  %h2 Edit User
+  %edit_user-component(a="a" me="a.model.me")
+
+  %h2 Remember Me
+  %remember_me-component(a="a")
+
+  %h2 Service
+  %dl
+    %dt
+      %b Github
+    %dd
+      %a.btn.btn-default.disabled(href="") Sign in with Github
+    %dt
+      %b Ruffnote
+    %dd
+      %a.btn.btn-default.disabled(href="") Sign in with Ruffnote
+
+  %h3 Cancel my account
+  %form
+    .checkbox
+      %label
+        %input(type="checkbox" ng-model="confirm")
+        Unhappy?
+    %button.btn.btn-danger.disabled(type="button" ng-hide="confirm") Cancel my account
+    %button.btn.btn-danger(type="button" ng-show="confirm" ng-click="a.me_delete()") Cancel my account
