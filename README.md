@@ -11,6 +11,7 @@ First, checkout this repository:
     $ git clone https://github.com/MiCHiLU/dart-cca-example.git
     $ cd dart-cca-example
     $ bundle install
+    $ npm install
 
 Then, install cca (Cordova Chrome Apps):
 

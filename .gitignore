@@ -3,6 +3,8 @@
 Gemfile.lock
 build
 lib/version
+node_modules
+npm-debug.log
 packages
 pubspec.lock
 pubspec.yaml.orig

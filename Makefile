@@ -13,7 +13,7 @@
 
 .SUFFIXES: .yaml .json
 .yaml.json:
-	cat $< |python -c "import json,yaml,sys; print(json.dumps(yaml.load(sys.stdin.read()), indent=2))" > $@
+	node_modules/.bin/yaml2json $< > $@
 
 
 RELEASE_DIR=release

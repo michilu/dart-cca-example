@@ -1,0 +1,13 @@
+{
+  "name": "dart-cca-example",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MiCHiLU/dart-cca-example.git"
+  },
+  "dependencies": {
+    "yamljs": ">=0.1.5"
+  },
+  "author": "ENDOH takanao",
+  "license": "MIT"
+}
