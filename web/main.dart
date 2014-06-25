@@ -17,7 +17,7 @@ class MyAppModule extends Module {
     install(new GoogleCloudEndpointModule());
     value(GoogleCloudEndpointServiceConfig, new GoogleCloudEndpointServiceConfig()
       ..client_id = "client_id.apps.googleusercontent.com"
-      ..root_url = "https://21-00.appspot.com/");
+      ..root_url = "https://a00-00.appspot.com/");
     value(FeedbackFormConfig, new FeedbackFormConfig()
       ..formkey = "formkey");
 
