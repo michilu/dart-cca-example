@@ -10,6 +10,8 @@ First, checkout this repository:
 
     $ git clone https://github.com/MiCHiLU/dart-cca-example.git
     $ cd dart-cca-example
+    $ git submodule init
+    $ git submodule update
     $ bundle install
     $ npm install
 
