@@ -1,11 +1,11 @@
-part of dart_cca_example;
+part of cca_base;
 
 class VersionService {
 
   Future _loaded;
   Http _http;
   String version;
-  final _versionUri = "/packages/dart_cca_example/version";
+  final _versionUri = "/packages/cca_base/version";
 
   VersionService(this._http) {
     var load = _get_version();

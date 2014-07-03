@@ -59,7 +59,7 @@ $(VERSION_HTML):
 
 
 RELEASE_RESOURCE=\
-	$(foreach path,$(HTML) $(VERSION_HTML),$(subst lib,web/packages/dart_cca_example,$(path)))\
+	$(foreach path,$(HTML) $(VERSION_HTML),$(subst lib,web/packages/cca_base,$(path)))\
 	$(JSON)\
 	$(shell find web/icons -name "*.png")\
 	web/js/browser_dart_csp_safe.js\
@@ -129,7 +129,7 @@ ios-sim: $(RELEASE_IOS)
 
 
 RESOURCE_SUFFIX_FOR_BUILD = html css json js
-RESOURCE_DIR_FOR_BUILD = web web/js web/view web/packages/dart_cca_example/component web/packages/dart_cca_example/routing web/packages/dart_cca_example/service
+RESOURCE_DIR_FOR_BUILD = web web/js web/view web/packages/cca_base/component web/packages/cca_base/routing web/packages/cca_base/service
 RESOURCE_FOR_BUILD = $(foreach suffix,$(RESOURCE_SUFFIX_FOR_BUILD),$(foreach dir,$(RESOURCE_DIR_FOR_BUILD),$(wildcard $(dir)/*.$(suffix))))
 BUILD_RESOURCE = $(addprefix build/,$(RESOURCE_FOR_BUILD))
 RELEASE_CORDOVA=$(RELEASE_DIR)/cordova
@@ -172,8 +172,9 @@ $(RELEASE_CORDOVA_RESOURCE_DIR): $(foreach path,$(RELEASE_RESOURCE_DIR),$(addpre
 	cp -r $(subst $(RELEASE_CORDOVA),$(RELEASE_RESOURCE_SRC_DIR),$@) $@
 
 
+PROJECT=DartCCA
 xcode: $(RELEASE_IOS)
-	open $</platforms/ios/DartCCA.xcodeproj
+	open $</platforms/ios/$(PROJECT).xcodeproj
 
 
 clean:

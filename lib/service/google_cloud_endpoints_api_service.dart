@@ -1,8 +1,8 @@
-library dart_cca_example.google_cloud_endpoints_api_service;
+library cca_base.google_cloud_endpoints_api_service;
 
 // Temporary, please follow https://github.com/angular/angular.dart/issues/476
 @MirrorsUsed(
-  targets: const ["dart_cca_example.google_cloud_endpoints_api_service", "echo_v1_api"],
+  targets: const ["cca_base.google_cloud_endpoints_api_service", "echo_v1_api"],
   override: "*")
 import "dart:mirrors";
 

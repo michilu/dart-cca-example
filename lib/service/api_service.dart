@@ -1,8 +1,8 @@
-library dart_cca_example.api_service;
+library cca_base.api_service;
 
 // Temporary, please follow https://github.com/angular/angular.dart/issues/476
 @MirrorsUsed(
-  targets: const ["dart_cca_example.api_service"],
+  targets: const ["cca_base.api_service"],
   override: "*")
 import "dart:mirrors";
 

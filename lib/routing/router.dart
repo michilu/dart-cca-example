@@ -1,4 +1,4 @@
-part of dart_cca_example;
+part of cca_base;
 
 void routeInitializer(Router router, ViewFactory views) =>
     views.configure({

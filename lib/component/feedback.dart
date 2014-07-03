@@ -1,4 +1,4 @@
-part of dart_cca_example;
+part of cca_base;
 
 class FeedbackFormConfig {
   String formkey;
@@ -6,7 +6,7 @@ class FeedbackFormConfig {
 
 @Component(
   selector: "feedback-component",
-  templateUrl: "packages/dart_cca_example/component/feedback_link.html",
+  templateUrl: "packages/cca_base/component/feedback_link.html",
   applyAuthorStyles: true,
   publishAs: "c"
 )
