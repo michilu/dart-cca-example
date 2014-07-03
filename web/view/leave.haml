@@ -1,12 +1,9 @@
-.col-lg-12.col-md-12
-  .alert.alert-info
-    You have successfully deleate your DartCCA account.
-    %span.text-muted (Google OAuth2 token is revoked)
-    %strong.text-danger
+.card
+  .item.item-text-wrap
+    You have successfully deleate your account.
+    %span (Google OAuth2 token is revoked)
+    %strong
       But you are still login to your Google account.
-    %a.alert-link(href="https://accounts.google.com/Logout?&continue=")
-      %span.glyphicon.glyphicon-log-out
+    %a(href="https://accounts.google.com/Logout?&continue=")
+      %span.ion-log-out
       Logout from Google account
-  .welcome.text-center
-    .jumbotron(style="background-color:#fff;")
-      %h1 DartCCA
