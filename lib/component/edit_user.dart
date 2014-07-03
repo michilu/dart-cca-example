@@ -3,7 +3,7 @@ part of cca_base;
 @Component(
   selector: "edit_user-component",
   templateUrl: "packages/cca_base/component/edit_user.html",
-  applyAuthorStyles: true,
+  useShadowDom: false,
   publishAs: "c"
 )
 class EditUserComponent {
