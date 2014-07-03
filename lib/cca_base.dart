@@ -1,8 +1,8 @@
-library dart_cca_example;
+library cca_base;
 
 // Temporary, please follow https://github.com/angular/angular.dart/issues/476
 @MirrorsUsed(
-  targets: const ["dart_cca_example"],
+  targets: const ["cca_base"],
   override: "*")
 import "dart:mirrors";
 
@@ -14,11 +14,11 @@ import "dart:js";
 import "package:angular/angular.dart";
 import "package:angular/routing/module.dart";
 import "package:chrome/chrome_app.dart" as chrome;
-import "package:dart_cca_example/service/api_service.dart";
-import "package:dart_cca_example/service/google_cloud_endpoints_api_service.dart";
+import "package:cca_base/service/api_service.dart";
+import "package:cca_base/service/google_cloud_endpoints_api_service.dart";
 import 'package:intl/intl.dart';
 
-export "package:dart_cca_example/service/google_cloud_endpoints_api_service.dart" show GoogleCloudEndpointModule, GoogleCloudEndpointServiceConfig;
+export "package:cca_base/service/google_cloud_endpoints_api_service.dart" show GoogleCloudEndpointModule, GoogleCloudEndpointServiceConfig;
 
 part "component/edit_user.dart";
 part "component/feedback.dart";
@@ -29,12 +29,12 @@ part "service/version.dart";
 @Controller(
     selector: "[app]",
     publishAs: "a")
-class DartCCAController {
+class CCABaseController {
 
   APIService _api;
   dynamic get model => _api.model;
 
-  DartCCAController(this._api);
+  CCABaseController(this._api);
 
   bool loading() {
     return _api.loading();
@@ -64,15 +64,15 @@ class DartCCAController {
 
 }
 
-class DartCCAModule extends Module {
-  DartCCAModule() {
+class CCABaseModule extends Module {
+  CCABaseModule() {
 
     install(new EditUserModule());
     install(new FeedbackModule());
     install(new FooterModule());
     install(new VersionServiceModule());
 
-    type(DartCCAController);
+    type(CCABaseController);
     value(RouteInitializerFn, routeInitializer);
     factory(NgRoutingUsePushState,
         (_) => new NgRoutingUsePushState.value(false));

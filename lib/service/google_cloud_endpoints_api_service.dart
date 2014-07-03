@@ -1,8 +1,8 @@
-library dart_cca_example.google_cloud_endpoints_api_service;
+library cca_base.google_cloud_endpoints_api_service;
 
 // Temporary, please follow https://github.com/angular/angular.dart/issues/476
 @MirrorsUsed(
-  targets: const ["dart_cca_example.google_cloud_endpoints_api_service", "echo_v1_api"],
+  targets: const ["cca_base.google_cloud_endpoints_api_service", "echo_v1_api"],
   override: "*")
 import "dart:mirrors";
 
@@ -30,10 +30,10 @@ class GoogleCloudEndpointModel extends Model {
   GoogleCloudEndpointModel(this._api) {
     inner_model = new Map();
     inner_resource = new Map();
-    var load = _get_me();
-    if (load != null) {
-      _loaded = Future.wait([load]);
-    }
+    //var load = _get_me();
+    //if (load != null) {
+    //  _loaded = Future.wait([load]);
+    //}
   }
 
   Future _get_me() {
@@ -95,12 +95,7 @@ class GoogleCloudEndpointService extends APIService {
   Http _http;
   Echo _endpoint;
 
-  dynamic get comment   => _endpoint.comment ;
-  dynamic get issue     => _endpoint.issue   ;
-  dynamic get me        => _endpoint.me ;
-  dynamic get project   => _endpoint.project ;
-  dynamic get user      => _endpoint.user    ;
-  dynamic get workload  => _endpoint.workload;
+  //dynamic get me        => _endpoint.me ;
 
   GoogleCloudEndpointService(this.c, this._http) {
     try {

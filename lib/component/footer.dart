@@ -1,8 +1,8 @@
-part of dart_cca_example;
+part of cca_base;
 
 @Component(
   selector: "footer-component",
-  templateUrl: "packages/dart_cca_example/component/footer.html",
+  templateUrl: "packages/cca_base/component/footer.html",
   applyAuthorStyles: true,
   publishAs: "c"
 )

@@ -1,16 +1,16 @@
-library dart_cca;
+library main;
 
 // Temporary, please follow https://github.com/angular/angular.dart/issues/476
 @MirrorsUsed(
-  targets: const ["dart_cca"],
+  targets: const ["main"],
   override: "*")
 import "dart:mirrors";
 
 import "package:angular/angular.dart";
 import "package:angular/application_factory.dart";
+import "package:cca_base/cca_base.dart";
 import "package:di/di.dart";
 import "package:logging/logging.dart";
-import "package:dart_cca_example/dart_cca_example.dart";
 
 class MyAppModule extends Module {
   MyAppModule() {
@@ -21,7 +21,7 @@ class MyAppModule extends Module {
     value(FeedbackFormConfig, new FeedbackFormConfig()
       ..formkey = "formkey");
 
-    install(new DartCCAModule());
+    install(new CCABaseModule());
   }
 }
 
