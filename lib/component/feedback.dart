@@ -7,7 +7,7 @@ class FeedbackFormConfig {
 @Component(
   selector: "feedback-component",
   templateUrl: "packages/cca_base/component/feedback_link.html",
-  applyAuthorStyles: true,
+  useShadowDom: false,
   publishAs: "c"
 )
 class FeedbackComponent {

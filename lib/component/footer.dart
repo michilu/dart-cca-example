@@ -3,7 +3,7 @@ part of cca_base;
 @Component(
   selector: "footer-component",
   templateUrl: "packages/cca_base/component/footer.html",
-  applyAuthorStyles: true,
+  useShadowDom: false,
   publishAs: "c"
 )
 class FooterComponent {
