@@ -70,7 +70,13 @@ Get the discovery file of your Google Cloud Endpoints API:
 
     $ curl -o assets/<your-api>.discovery https://<your-app-id>.appspot.com/_ah/api/discovery/v1/apis/<your-api>/<your-api-version>/rest
 
-Then, Rewrite `DISCOVERY` and `ENDPOINTS_LIB` line in Makefile:
+Then, add a dependencies entry that a dart library of your Google Cloud Endpoints API in pubspec.yaml as follows:
+
+    dependencies:
+      <your-api>_<your-api-version>_api:
+        path: submodule/dart_<your-api>_<your-api-version>_api_client
+
+Finally, rewrite `DISCOVERY` and `ENDPOINTS_LIB` line in Makefile:
 
     DISCOVERY=assets/echo-v1.discovery
 
@@ -78,9 +84,9 @@ Then, Rewrite `DISCOVERY` and `ENDPOINTS_LIB` line in Makefile:
 
 to
 
-    DISCOVERY=assets/<your-api>.discovery
+    DISCOVERY=assets/<your-api>-<your-api-version>.discovery
 
-    ENDPOINTS_LIB=submodule/dart_<your-api>_api_client
+    ENDPOINTS_LIB=submodule/dart_<your-api>_<your-api-version>_api_client
 
 see: https://github.com/dart-lang/discovery_api_dart_client_generator#generate-your-client-library
 
