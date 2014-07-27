@@ -70,7 +70,7 @@ RELEASE_RESOURCE=\
 	web/packages/shadow_dom/shadow_dom.min.js\
 
 RELEASE_CHROME_APPS=$(RELEASE_DIR)/chrome-apps
-RELEASE_RESOURCE_DIR=ionic-v1.0.0-beta.8
+RELEASE_RESOURCE_DIR=ionic-v1.0.0-beta.10
 RELEASE_CHROME_APPS_RESOURCE_DIR=$(foreach path,$(RELEASE_RESOURCE_DIR),$(addprefix $(RELEASE_CHROME_APPS)/,$(path)))
 BUILD_DIR=build
 RELEASE_RESOURCE_SRC_DIR=$(BUILD_DIR)/web
