@@ -45,7 +45,7 @@
   %ion-side-menu(side="right")
     %header.bar.bar-header.bar-stable
       %h1.title
-        Projects
+        Category
     %ion-content.has-header
       %ion-list
         %label.item.item-radio(nav-clear menu-close)
@@ -53,70 +53,44 @@
             .item-content
               All
             %i.radio-icon.ion-ios7-checkmark
-        %label.item.item-radio(nav-clear menu-close)
+        %label.item.item-radio(nav-clear menu-close ng-repeat="i in [0,1]")
           %input(type="radio" name="group")
             .item-content
-              Project
-            %i.radio-icon.ion-ios7-checkmark
-        %label.item.item-radio(nav-clear menu-close)
-          %input(type="radio" name="group")
-            .item-content
-              Project
-            %i.radio-icon.ion-ios7-checkmark
-        %label.item.item-radio(nav-clear menu-close)
-          %input(type="radio" name="group")
-            .item-content
-              Project
-            %i.radio-icon.ion-ios7-checkmark
-        %label.item.item-radio(nav-clear menu-close)
-          %input(type="radio" name="group")
-            .item-content
-              Project
-            %i.radio-icon.ion-ios7-checkmark
-        %label.item.item-radio(nav-clear menu-close)
-          %input(type="radio" name="group")
-            .item-content
-              Project
+              Category
             %i.radio-icon.ion-ios7-checkmark
 
-  %ion-tabs.tabs-icon-top.tabs-positive(ion-side-menu-content)
+  %ion-tabs.tabs-icon-only.tabs-positive(ion-side-menu-content)
 
-    %ion-tab(title="Workload" icon-on="icon ion-ios7-speedometer" icon-off="icon ion-ios7-speedometer-outline")
+    %ion-tab(title="Chrome Apps" icon-on="icon ion-social-google" icon-off="icon ion-social-google-outline")
       %ion-header-bar.bar-positive
         .buttons.left-buttons
           %button.button.button-icon.icon.ion-navicon(menu-toggle="left")
-        %h1.title Workload
+        %h1.title Chrome Apps
         .buttons.right-buttons
           %button.button.button-icon.icon.ion-ios7-albums-outline(menu-toggle="right")
       %ion-content(has-header="true")
         %ion-refresher
-        %h1 Workload
+        %div(style="background:url('/icons/icon-152.png') no-repeat center 115px; height:311px;")
 
-    %ion-tab(title="DartCCA" icon-on="icon ion-ios7-stopwatch" icon-off="icon ion-ios7-stopwatch-outline")
+    %ion-tab(title="iOS" icon-on="icon ion-social-apple" icon-off="icon ion-social-apple-outline")
       %ion-header-bar.bar-positive
         .buttons.left-buttons
           %button.button.button-icon.icon.ion-navicon(menu-toggle="left")
-        %h1.title DartCCA
+        %h1.title iOS
         .buttons.right-buttons
           %button.button.button-icon.icon.ion-ios7-albums-outline(menu-toggle="right")
       %ion-content(has-header="true")
         %ion-refresher
-        %h1 DartCCA
 
-    %ion-tab(title="Issues" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline")
+    %ion-tab(title="Android" icon-on="icon ion-social-android" icon-off="icon ion-social-android-outline")
       %ion-header-bar.bar-positive
         .buttons.left-buttons
           %button.button.button-icon.icon.ion-navicon(menu-toggle="left")
-        %h1.title Issues
+        %h1.title Android
         .buttons.right-buttons
           %button.button.button-icon.icon.ion-ios7-albums-outline(menu-toggle="right")
       %ion-content(has-tabs="true" on-refresh="onRefresh()")
         %ion-refresher
-        %h1 Issues
-        %ion-list(scroll="false" on-refresh="onRefresh()" s-editing="isEditingItems" animation="fade-out" delete-icon="icon ion-minus-circled")
-          %ion-item(ng-repeat="item in items" item="item" buttons="item.buttons" can-delete="true" can-swipe="true" on-delete="deleteItem(item)" ng-class="{completed: item.isCompleted}")
-            {{item.title}}
-            %i(ng-class="{{item.icon}}")
 
 %script(id="modal.html" type="text/ng-template")
   .modal
