@@ -1,5 +1,5 @@
 !!!
-%html(ng-app)/
+%html/
 %meta(charset="UTF-8")
 %meta(http-equiv="X-UA-Compatible" content="IE=edge")
 %meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
@@ -15,17 +15,117 @@
     padding-top: 100px;
   }
 
-%link(rel="stylesheet" href="ionic-v1.0.0-beta.10/css/ionic.min.css")
+%link(href="ionic-v1.0.0-beta.10/css/ionic.min.css" rel="stylesheet")
+%script(src="ionic-v1.0.0-beta.10/js/ionic.bundle.min.js")
+%script(src="js/app.js")
 %script(src="js/browser_dart_csp_safe.js")
 %script(src="packages/chrome/bootstrap.js" defer)
-%script(src="packages/shadow_dom/shadow_dom.min.js")
 %script(src="main.dart" type="application/dart")
-%body(app)/
+%body(app ng-app="starter" ng-controller="app")/
 
-.bar.bar-header.bar-light
-  %h1.title DartCCA
+%ion-side-menus
 
-.content.has-header
-  %ng-view
+  %ion-side-menu(side="left")
+    %header.bar.bar-header.bar-stable
+      %h1.title
+        Settings
+    %ion-content.has-header
+      %ion-list
+        %ion-item.item-icon-left(nav-clear menu-close)
+          %i.icon.ion-person
+          Account
+        %ion-item.item-icon-left(nav-clear menu-close)
+          %i.icon.ion-log-out
+          Logout
+        %ion-item.item-icon-left(ng-click="modal.show()")
+          %i.icon.ion-paper-airplane
+          Feedback
+      %footer-component
 
-%footer-component
+  %ion-side-menu(side="right")
+    %header.bar.bar-header.bar-stable
+      %h1.title
+        Projects
+    %ion-content.has-header
+      %ion-list
+        %label.item.item-radio(nav-clear menu-close)
+          %input(type="radio" name="group")
+            .item-content
+              All
+            %i.radio-icon.ion-ios7-checkmark
+        %label.item.item-radio(nav-clear menu-close)
+          %input(type="radio" name="group")
+            .item-content
+              Project
+            %i.radio-icon.ion-ios7-checkmark
+        %label.item.item-radio(nav-clear menu-close)
+          %input(type="radio" name="group")
+            .item-content
+              Project
+            %i.radio-icon.ion-ios7-checkmark
+        %label.item.item-radio(nav-clear menu-close)
+          %input(type="radio" name="group")
+            .item-content
+              Project
+            %i.radio-icon.ion-ios7-checkmark
+        %label.item.item-radio(nav-clear menu-close)
+          %input(type="radio" name="group")
+            .item-content
+              Project
+            %i.radio-icon.ion-ios7-checkmark
+        %label.item.item-radio(nav-clear menu-close)
+          %input(type="radio" name="group")
+            .item-content
+              Project
+            %i.radio-icon.ion-ios7-checkmark
+
+  %ion-tabs.tabs-icon-top.tabs-positive(ion-side-menu-content)
+
+    %ion-tab(title="Workload" icon-on="icon ion-ios7-speedometer" icon-off="icon ion-ios7-speedometer-outline")
+      %ion-header-bar.bar-positive
+        .buttons.left-buttons
+          %button.button.button-icon.icon.ion-navicon(menu-toggle="left")
+        %h1.title Workload
+        .buttons.right-buttons
+          %button.button.button-icon.icon.ion-ios7-albums-outline(menu-toggle="right")
+      %ion-content(has-header="true")
+        %ion-refresher
+        %h1 Workload
+
+    %ion-tab(title="DartCCA" icon-on="icon ion-ios7-stopwatch" icon-off="icon ion-ios7-stopwatch-outline")
+      %ion-header-bar.bar-positive
+        .buttons.left-buttons
+          %button.button.button-icon.icon.ion-navicon(menu-toggle="left")
+        %h1.title DartCCA
+        .buttons.right-buttons
+          %button.button.button-icon.icon.ion-ios7-albums-outline(menu-toggle="right")
+      %ion-content(has-header="true")
+        %ion-refresher
+        %h1 DartCCA
+
+    %ion-tab(title="Issues" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline")
+      %ion-header-bar.bar-positive
+        .buttons.left-buttons
+          %button.button.button-icon.icon.ion-navicon(menu-toggle="left")
+        %h1.title Issues
+        .buttons.right-buttons
+          %button.button.button-icon.icon.ion-ios7-albums-outline(menu-toggle="right")
+      %ion-content(has-tabs="true" on-refresh="onRefresh()")
+        %ion-refresher
+        %h1 Issues
+        %ion-list(scroll="false" on-refresh="onRefresh()" s-editing="isEditingItems" animation="fade-out" delete-icon="icon ion-minus-circled")
+          %ion-item(ng-repeat="item in items" item="item" buttons="item.buttons" can-delete="true" can-swipe="true" on-delete="deleteItem(item)" ng-class="{completed: item.isCompleted}")
+            {{item.title}}
+            %i(ng-class="{{item.icon}}")
+
+%script(id="modal.html" type="text/ng-template")
+  .modal
+    %ion-header-bar.bar.bar-header.bar-positive
+      %h1.title Feedback
+      %button.button.button-clear.button-primary(ng-click="modal.hide()") Cancel
+    %ion-content
+      .padding
+        .list
+          %label.item.item-input
+            %textarea(rows="10" placeholder="messages...")
+          %button.button.button-full.button-positive(ng-click="modal.hide()") send feedback
