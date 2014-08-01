@@ -68,7 +68,7 @@ How to access to your Google Cloud Endpoints API
 
 Get the discovery file of your Google Cloud Endpoints API:
 
-    $ curl -o assets/<your-api>.discovery https://<your-app-id>.appspot.com/_ah/api/discovery/v1/apis/<your-api>/<your-api-version>/rest
+    $ curl -o assets/<your-api>-<your-api-version>.discovery https://<your-app-id>.appspot.com/_ah/api/discovery/v1/apis/<your-api>/<your-api-version>/rest
 
 Then, add a dependencies entry that a dart library of your Google Cloud Endpoints API in pubspec.yaml as follows:
 
