@@ -1,9 +1,7 @@
-.bar.bar-footer.bar-light
-  %footer.title(style="font-size:13px;")
+%footer
+  %div(style="text-align:center;")
     &copy; ENDOH takanao
     2014
     -#%span(ng-cloak)>-{{ c.year }}
-    &nbsp;
-    %span.text-muted(ng-cloak)
+    %span(ng-cloak style="color:#aaa;")>
       ver.{{ c.version }}
-    %feedback-component(p="c")
