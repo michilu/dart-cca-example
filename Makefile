@@ -123,8 +123,8 @@ $(DART_JS): pubspec.yaml $(DART)
 
 $(RELEASE_CHROME_APPS_RESOURCE_DIR): $(foreach path,$(RELEASE_RESOURCE_DIR),$(addprefix $(RELEASE_RESOURCE_SRC_DIR)/,$(path)))
 	cp -r $(subst $(RELEASE_CHROME_APPS),$(RELEASE_RESOURCE_SRC_DIR),$@) $@
-	rm $(foreach path,$(shell find release/chrome-apps -type f -name *.min.css),$(subst .min.css,.css,$(path)))
-	rm $(foreach path,$(shell find release/chrome-apps -type f -name *.min.js),$(subst .min.js,.js,$(path)))
+	rm -f $(foreach path,$(shell find release/chrome-apps -type f -name *.min.css),$(subst .min.css,.css,$(path)))
+	rm -f $(foreach path,$(shell find release/chrome-apps -type f -name *.min.js),$(subst .min.js,.js,$(path)))
 
 
 ios: $(RELEASE_IOS)
