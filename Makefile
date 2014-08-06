@@ -32,16 +32,16 @@ MINCSS=$(SASS:.sass=.min.css)
 YAML=$(shell find web -type f -name "[^.]*.yaml")
 JSON=$(YAML:.yaml=.json)
 RESOURCE=$(HTML) $(CSS) $(MINCSS) $(JSON)
-VERSION_HTML=lib/version
+VERSION=lib/version
 
-resource: $(RESOURCE) $(VERSION_HTML)
+resource: $(VERSION) $(RESOURCE)
 
 
-pubserve: $(VERSION_HTML) $(ENDPOINTS_LIB) $(RESOURCE)
+pubserve: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE)
 	-patch -p1 --forward --reverse -i pubbuild.patch
 	pub serve --port 8080 --no-dart2js
 
-pubserve-force-poll: $(VERSION_HTML) $(ENDPOINTS_LIB) $(RESOURCE)
+pubserve-force-poll: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE)
 	-patch -p1 --forward --reverse -i pubbuild.patch
 	pub serve --port 8080 --no-dart2js --force-poll
 
@@ -50,16 +50,16 @@ $(ENDPOINTS_LIB):
 	cd submodule/discovery_api_dart_client_generator; pub install
 	submodule/discovery_api_dart_client_generator/bin/generate.dart --no-prefix -i $(DISCOVERY) -o submodule
 
-VERSION=$(shell git describe --always --dirty=+)
-$(VERSION_HTML):
-	@if [ "$(VERSION)" != "$(strip $(shell [ -f $@ ] && cat $@))" ] ; then\
-		echo 'echo $(VERSION) > $@' ;\
-		echo $(VERSION) > $@ ;\
+VERSION_STRING=$(shell git describe --always --dirty=+)
+$(VERSION):
+	@if [ "$(VERSION_STRING)" != "$(strip $(shell [ -f $@ ] && cat $@))" ] ; then\
+		echo 'echo $(VERSION_STRING) > $@' ;\
+		echo $(VERSION_STRING) > $@ ;\
 	fi;
 
 
 RELEASE_RESOURCE=\
-	$(foreach path,$(HTML) $(VERSION_HTML),$(subst lib,web/packages/cca_base,$(path)))\
+	$(foreach path,$(HTML) $(VERSION),$(subst lib,web/packages/cca_base,$(path)))\
 	$(JSON)\
 	$(shell find web/icons -name "*.png")\
 	web/js/app.js\
@@ -80,7 +80,7 @@ RELEASE_RESOURCE_SRC_DIR=$(BUILD_DIR)/web
 RELEASE_CHROME_APPS_RESOURCE_SRC=$(addprefix $(BUILD_DIR)/,$(RELEASE_CHROME_APPS_RESOURCE))
 RELEASE_CHROME_APPS_RESOURCE_DST=$(foreach path,$(RELEASE_CHROME_APPS_RESOURCE_SRC),$(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path)))
 CHROME_APPS_DART_JS=chrome-apps-dart-js
-chrome-apps: $(VERSION_HTML) $(ENDPOINTS_LIB) $(RESOURCE) $(RELEASE_CHROME_APPS) $(CHROME_APPS_DART_JS) $(RELEASE_CHROME_APPS_RESOURCE_DST)
+chrome-apps: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(RELEASE_CHROME_APPS) $(CHROME_APPS_DART_JS) $(RELEASE_CHROME_APPS_RESOURCE_DST)
 	make $(RELEASE_CHROME_APPS_RESOURCE_DIR)
 	@if [ $(DART_JS) -nt $(RELEASE_CHROME_APPS)/main.dart.precompiled.js ]; then\
 		echo "cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js";\
@@ -145,7 +145,7 @@ RELEASE_CORDOVA_RESOURCE_DST=$(foreach path,$(RELEASE_CORDOVA_RESOURCE_SRC),$(su
 CORDOVA_DART_JS=cordova-dart-js
 CORDOVA_PLUGINS_TXT=cordova-plugins.txt
 CORDOVA_PLUGINS=$(foreach plugin,$(shell cat $(CORDOVA_PLUGINS_TXT)),$(subst submodule/,../../submodule/,$(plugin)))
-$(RELEASE_IOS): $(VERSION_HTML) $(ENDPOINTS_LIB) $(RESOURCE) $(BUILD_RESOURCE) $(RELEASE_CORDOVA) $(CORDOVA_DART_JS) $(RELEASE_CORDOVA_RESOURCE_DST) $(CORDOVA_PLUGINS_TXT)
+$(RELEASE_IOS): $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(BUILD_RESOURCE) $(RELEASE_CORDOVA) $(CORDOVA_DART_JS) $(RELEASE_CORDOVA_RESOURCE_DST) $(CORDOVA_PLUGINS_TXT)
 	make $(RELEASE_CORDOVA_RESOURCE_DIR)
 	@if [ $(DART_JS) -nt $(RELEASE_CORDOVA)/main.dart.precompiled.js ]; then\
 		echo "cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js";\
@@ -199,7 +199,7 @@ xcode: $(RELEASE_IOS)
 
 
 clean:
-	rm -f $(VERSION_HTML) $(RESOURCE)
+	rm -f $(VERSION) $(RESOURCE)
 	rm -rf $(BUILD_DIR) $(RELEASE_DIR)
 	git checkout release/ios/config.xml
 	-patch -p1 --forward --reverse -i pubbuild.patch
@@ -212,4 +212,4 @@ clean-all: clean
 	find . -name packages -type l -delete
 	find . -type d -name .sass-cache |xargs rm -rf
 
-.PHONY: $(VERSION_HTML) $(RELEASE_IOS)
+.PHONY: $(VERSION) $(RELEASE_IOS)
