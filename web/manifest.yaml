@@ -1,6 +1,6 @@
 manifest_version: 2
 name: DartCCA
-version: "1"
+version: "1.0.${AUTO_COUNT}"
 minimum_chrome_version: "23"
 icons:
   16:   icons/icon-16.png

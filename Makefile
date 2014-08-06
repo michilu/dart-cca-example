@@ -51,10 +51,16 @@ $(ENDPOINTS_LIB):
 	submodule/discovery_api_dart_client_generator/bin/generate.dart --no-prefix -i $(DISCOVERY) -o submodule
 
 VERSION_STRING=$(shell git describe --always --dirty=+)
+PROJECT_SINCE=1400976000 #2014/05/25
+AUTO_COUNT_SINCE=$(shell echo $$(((`date -u +%s`-$(PROJECT_SINCE))/(24*60*60))))
+AUTO_COUNT_LOG=$(shell git log --since=midnight --oneline|wc -l|tr -d " ")
 $(VERSION):
 	@if [ "$(VERSION_STRING)" != "$(strip $(shell [ -f $@ ] && cat $@))" ] ; then\
 		echo 'echo $(VERSION_STRING) > $@' ;\
 		echo $(VERSION_STRING) > $@ ;\
+		echo $(AUTO_COUNT_SINCE) days since `date -u -r $(PROJECT_SINCE) +%Y-%m-%d`, $(AUTO_COUNT_LOG) commits from midnight. ;\
+		node_modules/.bin/yaml2json web/manifest.yaml > web/manifest.json ;\
+		sed -i "" -e "s/\$${AUTO_COUNT}/$(AUTO_COUNT_SINCE).$(AUTO_COUNT_LOG)/" web/manifest.json ;\
 	fi;
 
 
