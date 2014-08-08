@@ -1,2 +1,1 @@
-submodule/ionic-plugins-keyboard
 submodule/me.apla.cordova.app-preferences
