@@ -73,7 +73,6 @@ RELEASE_RESOURCE=\
 	web/js/main.js\
 	web/packages/browser/dart.js\
 	web/packages/chrome/bootstrap.js\
-	web/packages/shadow_dom/shadow_dom.min.js\
 
 RELEASE_CHROME_APPS_RESOURCE=$(RELEASE_RESOURCE) web/main.dart
 RELEASE_CORDOVA_RESOURCE=$(RELEASE_RESOURCE)
