@@ -2,8 +2,17 @@ name: cca_base
 version: 0.0.1
 dependencies:
   angular: ">=0.12.0 <0.13.0"
+  angular_node_bind: any
   chrome: any
+  polymer: ">=0.11.1-dev <0.12.0"
   echo_v1_api:
     path: submodule/dart_echo_v1_api_client
 dev_dependencies:
   unittest: any
+transformers:
+- polymer:
+    entry_points: web/index.html
+dependency_overrides:
+  analyzer: ">=0.15.6 <0.16.0"
+  html5lib: ">=0.11.0 <0.12.0"
+  web_components: ">=0.4.0 <0.5.0"
