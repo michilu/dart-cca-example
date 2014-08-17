@@ -4,7 +4,7 @@ dependencies:
   angular: ">=0.12.0 <0.13.0"
   angular_node_bind: any
   chrome: any
-  paper_elements: 0.1.0+2
+  paper_elements: 0.1.0+3
   polymer: ">=0.12.0 <0.13.0"
   echo_v1_api:
     path: submodule/dart_echo_v1_api_client
