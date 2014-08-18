@@ -68,10 +68,53 @@ RELEASE_RESOURCE=\
 	$(foreach path,$(HTML) $(VERSION),$(subst lib,web/packages/cca_base,$(path)))\
 	$(JSON)\
 	$(shell find web/icons -name "*.png")\
+	$(shell find web/example -name "*.html")\
+	web/index.html_bootstrap.dart.js\
+	web/index.html_bootstrap.dart.precompiled.js\
 	web/js/browser_dart_csp_safe.js\
 	web/js/main.js\
 	web/packages/browser/dart.js\
 	web/packages/chrome/bootstrap.js\
+	web/packages/polymer/src/js/polymer/polymer.js\
+	web/packages/web_components/dart_support.js\
+	web/packages/web_components/platform.js\
+	web/index.html.0.js\
+	web/index.html.1.js\
+	web/index.html.2.js\
+	web/index.html.3.js\
+	web/index.html.4.js\
+	web/index.html.5.js\
+	web/index.html.6.js\
+	web/index.html.7.js\
+	web/index.html.8.js\
+	web/index.html.9.js\
+	web/index.html.10.js\
+	web/index.html.11.js\
+	web/index.html.12.js\
+	web/index.html.13.js\
+	web/index.html.14.js\
+	web/index.html.15.js\
+	web/index.html.16.js\
+	web/index.html.17.js\
+	web/index.html.18.js\
+	web/index.html.19.js\
+	web/index.html.20.js\
+	web/index.html.21.js\
+	web/index.html.22.js\
+	web/index.html.23.js\
+	web/index.html.24.js\
+	web/index.html.25.js\
+	web/index.html.26.js\
+	web/index.html.27.js\
+	web/index.html.28.js\
+	web/index.html.29.js\
+	web/index.html.30.js\
+	web/example/paper_checkbox.html.1.js\
+	web/example/paper_checkbox.html.2.js\
+	web/example/paper_checkbox.html.3.js\
+	web/example/paper_checkbox.html.4.js\
+	web/example/paper_checkbox.html.5.js\
+	web/example/paper_checkbox.html_bootstrap.dart.js\
 
 RELEASE_CHROME_APPS_RESOURCE=$(RELEASE_RESOURCE) web/main.dart
 RELEASE_CORDOVA_RESOURCE=$(RELEASE_RESOURCE)
@@ -85,7 +128,7 @@ RELEASE_CHROME_APPS_RESOURCE_SRC=$(addprefix $(BUILD_DIR)/,$(RELEASE_CHROME_APPS
 RELEASE_CHROME_APPS_RESOURCE_DST=$(foreach path,$(RELEASE_CHROME_APPS_RESOURCE_SRC),$(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path)))
 CHROME_APPS_DART_JS=chrome-apps-dart-js
 chrome-apps: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(RELEASE_CHROME_APPS) $(CHROME_APPS_DART_JS) $(RELEASE_CHROME_APPS_RESOURCE_DST)
-	make $(RELEASE_CHROME_APPS_RESOURCE_DIR)
+	#make $(RELEASE_CHROME_APPS_RESOURCE_DIR)
 	@if [ $(DART_JS) -nt $(RELEASE_CHROME_APPS)/main.dart.precompiled.js ]; then\
 		echo "cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js;\

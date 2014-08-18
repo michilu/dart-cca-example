@@ -16,6 +16,7 @@ dependency_overrides:
   web_components: ">=0.5.0 <0.6.0"
 transformers:
 - polymer:
+    csp: true
     entry_points:
       - web/index.html
       - web/example/core_scroll_header_panel.html
