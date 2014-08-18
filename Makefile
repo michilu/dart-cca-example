@@ -68,7 +68,6 @@ RELEASE_RESOURCE=\
 	$(JSON)\
 	$(shell find web/icons -name "*.png")\
 	$(shell find web/example -name "*.html")\
-	web/index.html_bootstrap.dart.js\
 	web/index.html_bootstrap.dart.precompiled.js\
 	web/js/browser_dart_csp_safe.js\
 	web/js/main.js\
@@ -113,7 +112,7 @@ RELEASE_RESOURCE=\
 	web/example/paper_checkbox.html.3.js\
 	web/example/paper_checkbox.html.4.js\
 	web/example/paper_checkbox.html.5.js\
-	web/example/paper_checkbox.html_bootstrap.dart.js\
+	web/example/paper_checkbox.html_bootstrap.dart.precompiled.js\
 
 RELEASE_CHROME_APPS_RESOURCE=$(RELEASE_RESOURCE) web/main.dart
 RELEASE_CORDOVA_RESOURCE=$(RELEASE_RESOURCE)
