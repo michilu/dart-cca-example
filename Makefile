@@ -126,7 +126,9 @@ RELEASE_CHROME_APPS_RESOURCE_SRC=$(addprefix $(BUILD_DIR)/,$(RELEASE_CHROME_APPS
 RELEASE_CHROME_APPS_RESOURCE_DST=$(foreach path,$(RELEASE_CHROME_APPS_RESOURCE_SRC),$(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path)))
 CHROME_APPS_DART_JS=chrome-apps-dart-js
 chrome-apps: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(RELEASE_CHROME_APPS) $(CHROME_APPS_DART_JS) $(RELEASE_CHROME_APPS_RESOURCE_DST)
-	#make $(RELEASE_CHROME_APPS_RESOURCE_DIR)
+	@if [ "$(strip $(RELEASE_CHROME_APPS_RESOURCE_DIR))" != "" ]; then\
+		make $(RELEASE_CHROME_APPS_RESOURCE_DIR);\
+	fi;
 	@if [ $(DART_JS) -nt $(RELEASE_CHROME_APPS)/main.dart.precompiled.js ]; then\
 		echo "cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js;\
@@ -191,7 +193,9 @@ CORDOVA_DART_JS=cordova-dart-js
 CORDOVA_PLUGINS_TXT=cordova-plugins.txt
 CORDOVA_PLUGINS=$(foreach plugin,$(shell cat $(CORDOVA_PLUGINS_TXT)),$(subst submodule/,../../submodule/,$(plugin)))
 $(RELEASE_IOS): $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(BUILD_RESOURCE) $(RELEASE_CORDOVA) $(CORDOVA_DART_JS) $(RELEASE_CORDOVA_RESOURCE_DST) $(CORDOVA_PLUGINS_TXT)
-	#make $(RELEASE_CORDOVA_RESOURCE_DIR)
+	@if [ "$(strip $(RELEASE_CORDOVA_RESOURCE_DIR))" != "" ]; then\
+		make $(RELEASE_CORDOVA_RESOURCE_DIR);\
+	fi;
 	@if [ $(DART_JS) -nt $(RELEASE_CORDOVA)/main.dart.precompiled.js ]; then\
 		echo "cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js;\
