@@ -68,7 +68,6 @@ RELEASE_RESOURCE=\
 	$(JSON)\
 	$(shell find web/icons -name "*.png")\
 	$(shell find web/example -name "*.html")\
-	web/index.html_bootstrap.dart.precompiled.js\
 	web/js/browser_dart_csp_safe.js\
 	web/js/main.js\
 	web/packages/browser/dart.js\
@@ -76,43 +75,6 @@ RELEASE_RESOURCE=\
 	web/packages/polymer/src/js/polymer/polymer.js\
 	web/packages/web_components/dart_support.js\
 	web/packages/web_components/platform.js\
-	web/index.html.0.js\
-	web/index.html.1.js\
-	web/index.html.2.js\
-	web/index.html.3.js\
-	web/index.html.4.js\
-	web/index.html.5.js\
-	web/index.html.6.js\
-	web/index.html.7.js\
-	web/index.html.8.js\
-	web/index.html.9.js\
-	web/index.html.10.js\
-	web/index.html.11.js\
-	web/index.html.12.js\
-	web/index.html.13.js\
-	web/index.html.14.js\
-	web/index.html.15.js\
-	web/index.html.16.js\
-	web/index.html.17.js\
-	web/index.html.18.js\
-	web/index.html.19.js\
-	web/index.html.20.js\
-	web/index.html.21.js\
-	web/index.html.22.js\
-	web/index.html.23.js\
-	web/index.html.24.js\
-	web/index.html.25.js\
-	web/index.html.26.js\
-	web/index.html.27.js\
-	web/index.html.28.js\
-	web/index.html.29.js\
-	web/index.html.30.js\
-	web/example/paper_checkbox.html.1.js\
-	web/example/paper_checkbox.html.2.js\
-	web/example/paper_checkbox.html.3.js\
-	web/example/paper_checkbox.html.4.js\
-	web/example/paper_checkbox.html.5.js\
-	web/example/paper_checkbox.html_bootstrap.dart.precompiled.js\
 
 RELEASE_CHROME_APPS_RESOURCE=$(RELEASE_RESOURCE) web/main.dart
 RELEASE_CORDOVA_RESOURCE=$(RELEASE_RESOURCE)
@@ -133,6 +95,11 @@ chrome-apps: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(RELEASE_CHROME_APPS) $(CH
 		echo "cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js;\
 	fi;
+	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html.*.js" -or -name "*.html_bootstrap.dart.precompiled.js"),$(shell\
+		if [ $(path) -nt $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path)) ]; then\
+			cp $(path) $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path));\
+		fi;\
+	))
 	cd $(RELEASE_DIR) && zip -r -9 -FS chrome-apps.zip chrome-apps
 
 $(RELEASE_CHROME_APPS): $(RELEASE_DIR)
@@ -150,7 +117,9 @@ $(RELEASE_CHROME_APPS_RESOURCE_DST): $(RELEASE_CHROME_APPS_RESOURCE_SRC) $(CHROM
 	@if [ ! -d $(dir $@) ]; then\
 		mkdir -p $(dir $@);\
 	fi;
-	cp $(subst $(RELEASE_CHROME_APPS),$(RELEASE_RESOURCE_SRC_DIR),$@) $@
+	@if [ $(subst $(RELEASE_CHROME_APPS),$(RELEASE_RESOURCE_SRC_DIR),$@) -nt $@ ]; then\
+		cp $(subst $(RELEASE_CHROME_APPS),$(RELEASE_RESOURCE_SRC_DIR),$@) $@;\
+	fi;
 
 $(RELEASE_DIR)/%: %
 	@mkdir -p $(dir $@)
@@ -200,6 +169,11 @@ $(RELEASE_IOS): $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(BUILD_RESOURCE) $(RELE
 		echo "cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js;\
 	fi;
+	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html.*.js" -or -name "*.html_bootstrap.dart.precompiled.js"),$(shell\
+		if [ $(path) -nt $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CORDOVA),$(path)) ]; then\
+			cp $(path) $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CORDOVA),$(path));\
+		fi;\
+	))
 	@if ! (cd $@ && cca prepare); then\
 		echo "rm -rf $@";\
 		rm -rf $@;\
@@ -236,7 +210,9 @@ $(RELEASE_CORDOVA_RESOURCE_DST): $(RELEASE_CORDOVA_RESOURCE_SRC) $(CORDOVA_DART_
 	@if [ ! -d $(dir $@) ]; then\
 		mkdir -p $(dir $@);\
 	fi;
-	cp $(subst $(RELEASE_CORDOVA),$(RELEASE_RESOURCE_SRC_DIR),$@) $@
+	@if [ $(subst $(RELEASE_CORDOVA),$(RELEASE_RESOURCE_SRC_DIR),$@) -nt $@ ]; then\
+		cp $(subst $(RELEASE_CORDOVA),$(RELEASE_RESOURCE_SRC_DIR),$@) $@;\
+	fi;
 
 $(RELEASE_CORDOVA_RESOURCE_DIR): $(foreach path,$(RELEASE_RESOURCE_DIR),$(addprefix $(RELEASE_RESOURCE_SRC_DIR)/,$(path)))
 	cp -r $(subst $(RELEASE_CORDOVA),$(RELEASE_RESOURCE_SRC_DIR),$@) $@
