@@ -1,9 +1,8 @@
 diff --git a/pubspec.yaml b/pubspec.yaml
-index 315554d..1d7052b 100644
+index f7a552f..cada491 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
-@@ -11,2 +11,4 @@ dependencies:
- dev_dependencies:
-   unittest: any
-+transformers:
+@@ -17,2 +17,3 @@ dependency_overrides:
+ transformers:
 +- chrome
+ - polymer:

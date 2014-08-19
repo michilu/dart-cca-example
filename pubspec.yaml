@@ -2,8 +2,46 @@ name: cca_base
 version: 0.0.1
 dependencies:
   angular: ">=0.12.0 <0.13.0"
+  angular_node_bind: any
   chrome: any
+  paper_elements: 0.1.0+3
+  polymer: ">=0.12.0 <0.13.0"
   echo_v1_api:
     path: submodule/dart_echo_v1_api_client
 dev_dependencies:
   unittest: any
+dependency_overrides:
+  analyzer: ">=0.15.6 <0.16.0"
+  html5lib: ">=0.11.0 <0.12.0"
+  polymer:
+    git:
+      url: https://github.com/MiCHiLU/polymer.dart.git
+      ref: master
+  web_components: ">=0.5.0 <0.6.0"
+transformers:
+- polymer:
+    csp: true
+    entry_points:
+    - web/index.html
+    - web/example/core_scroll_header_panel.html
+    - web/example/paper_button.html
+    - web/example/paper_button2.html
+    - web/example/paper_checkbox.html
+    - web/example/paper_dialog.html
+    - web/example/paper_fab.html
+    - web/example/paper_fab2.html
+    - web/example/paper_icon_button.html
+    - web/example/paper_input.html
+    - web/example/paper_input2.html
+    - web/example/paper_item.html
+    - web/example/paper_menu_button.html
+    - web/example/paper_progress.html
+    - web/example/paper_radio_button.html
+    - web/example/paper_radio_group.html
+    - web/example/paper_ripple.html
+    - web/example/paper_shadow.html
+    - web/example/paper_slider.html
+    - web/example/paper_tabs.html
+    - web/example/paper_toast.html
+    - web/example/paper_toggle_button.html
+    lint: false

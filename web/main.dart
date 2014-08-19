@@ -6,11 +6,13 @@ library main;
   override: "*")
 import "dart:mirrors";
 
-import "package:angular/angular.dart";
-import "package:angular/application_factory.dart";
+import "package:angular/angular.dart" show Module;
+import "package:angular/application_factory.dart" show applicationFactory;
+import "package:angular_node_bind/angular_node_bind.dart" show NodeBindModule;
 import "package:cca_base/cca_base.dart";
 import "package:di/di.dart";
 import "package:logging/logging.dart";
+import "package:polymer/polymer.dart" show initPolymer, Polymer;
 
 class MyAppModule extends Module {
   MyAppModule() {
@@ -28,7 +30,13 @@ class MyAppModule extends Module {
 void main() {
   Logger.root.level = Level.FINEST;
   Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
-  applicationFactory()
-    .addModule(new MyAppModule())
-    .run();
+  initPolymer().run(() {
+    Polymer.onReady.then((_) {
+      applicationFactory()
+      .addModule(new MyAppModule())
+      .addModule(new NodeBindModule())
+      .run()
+      ;
+    });
+  });
 }

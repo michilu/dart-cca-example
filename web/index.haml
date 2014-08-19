@@ -12,94 +12,48 @@
     display: none !important;
   }
   body {
-    padding-top: 100px;
+    font-family: RobotoDraft, sans-serif;
+    color: #333;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
   }
 
-%link(href="ionic-v1.0.0-beta.10/css/ionic.min.css" rel="stylesheet")
-%script(src="ionic-v1.0.0-beta.10/js/ionic.bundle.min.js")
-%script(src="js/app.js")
+%link(rel="import" href="packages/polymer/polymer.html")
 %script(src="js/browser_dart_csp_safe.js")
 %script(src="packages/chrome/bootstrap.js" defer)
+
+%link(rel="import" href="packages/core_elements/core_icons.html")
+%link(rel="import" href="packages/paper_elements/sampler_scaffold.html")
+%link(rel="import" href="packages/paper_elements/roboto.html")
+%link(rel="import" href="packages/core_elements/core_item.html")
+%link(rel="import" href="packages/core_elements/core_submenu.html")
+%link(rel="import" href="packages/paper_elements/paper_icon_button.html")
+%link(rel="import" href="packages/paper_elements/paper_fab.html")
+
 %script(src="main.dart" type="application/dart")
-%body(app ng-app="starter" ng-controller="app")/
+%body(app ng-app="starter" ng-controller="app" unresolved)/
 
-%ion-side-menus
-
-  %ion-side-menu(side="left")
-    %header.bar.bar-header.bar-stable
-      %h1.title
-        Settings
-    %ion-content.has-header
-      %ion-list
-        %ion-item.item-icon-left(nav-clear menu-close)
-          %i.icon.ion-person
-          Account
-        %ion-item.item-icon-left(nav-clear menu-close)
-          %i.icon.ion-log-out
-          Logout
-        %ion-item.item-icon-left(ng-click="modal.show()")
-          %i.icon.ion-paper-airplane
-          Feedback
-      %footer-component
-
-  %ion-side-menu(side="right")
-    %header.bar.bar-header.bar-stable
-      %h1.title
-        Category
-    %ion-content.has-header
-      %ion-list
-        %label.item.item-radio(nav-clear menu-close)
-          %input(type="radio" name="group")
-            .item-content
-              All
-            %i.radio-icon.ion-ios7-checkmark
-        %label.item.item-radio(nav-clear menu-close ng-repeat="i in [0,1]")
-          %input(type="radio" name="group")
-            .item-content
-              Category
-            %i.radio-icon.ion-ios7-checkmark
-
-  %ion-tabs.tabs-icon-only.tabs-positive(ion-side-menu-content)
-
-    %ion-tab(title="Chrome Apps" icon-on="icon ion-social-google" icon-off="icon ion-social-google-outline")
-      %ion-header-bar.bar-positive
-        .buttons.left-buttons
-          %button.button.button-icon.icon.ion-navicon(menu-toggle="left")
-        %h1.title Chrome Apps
-        .buttons.right-buttons
-          %button.button.button-icon.icon.ion-ios7-albums-outline(menu-toggle="right")
-      %ion-content(has-header="true")
-        %ion-refresher
-        %div(style="background:url('/icons/icon-152.png') no-repeat center 115px; height:311px;")
-
-    %ion-tab(title="iOS" icon-on="icon ion-social-apple" icon-off="icon ion-social-apple-outline")
-      %ion-header-bar.bar-positive
-        .buttons.left-buttons
-          %button.button.button-icon.icon.ion-navicon(menu-toggle="left")
-        %h1.title iOS
-        .buttons.right-buttons
-          %button.button.button-icon.icon.ion-ios7-albums-outline(menu-toggle="right")
-      %ion-content(has-header="true")
-        %ion-refresher
-
-    %ion-tab(title="Android" icon-on="icon ion-social-android" icon-off="icon ion-social-android-outline")
-      %ion-header-bar.bar-positive
-        .buttons.left-buttons
-          %button.button.button-icon.icon.ion-navicon(menu-toggle="left")
-        %h1.title Android
-        .buttons.right-buttons
-          %button.button.button-icon.icon.ion-ios7-albums-outline(menu-toggle="right")
-      %ion-content(has-tabs="true" on-refresh="onRefresh()")
-        %ion-refresher
-
-%script(id="modal.html" type="text/ng-template")
-  .modal
-    %ion-header-bar.bar.bar-header.bar-positive
-      %h1.title Feedback
-      %button.button.button-clear.button-primary(ng-click="modal.hide()") Cancel
-    %ion-content
-      .padding
-        .list
-          %label.item.item-input
-            %textarea(rows="10" placeholder="messages...")
-          %button.button.button-full.button-positive(ng-click="modal.hide()") send feedback
+%sampler-scaffold(label="Paper Elements" fit touch-action="auto")
+  %paper-icon-button.menuButton(icon="menu")
+  %paper-fab.sourceButton.bottom(icon="launch")
+  %core-item(label="Checkbox" tag="paper-checkbox" url="example/paper_checkbox.html")
+  %core-item(label="Radio Button" tag="paper-radio-button" url="example/paper_radio_group.html")
+  %core-item(label="Toggle Button" tag="paper-toggle-button" url="example/paper_toggle_button.html")
+  %core-item(label="Input" tag="paper-input" url="example/paper_input.html")
+  /%core-item(label="Ripple Effect" tag="paper-ripple" url="example/../paper-ripple/demo.html")
+  %core-item(label="Toolbar" tag="core-toolbar" url="example/core_toolbar.html")
+  %core-item(label="Progress Bar" tag="paper-progress" url="example/paper_progress.html")
+  %core-item(label="Slider" tag="paper-slider" url="example/paper_slider.html")
+  %core-item(label="Tabs" tag="paper-tabs" url="example/paper_tabs.html")
+  %core-item(label="Button" tag="paper-button" url="example/paper_button.html")
+  %core-item(label="Icon Button" tag="paper-icon-button" url="example/paper_icon_button.html")
+  %core-item(label="Floating Action Button" tag="paper-fab" url="example/paper_fab.html")
+  %core-item(label="Menu Button" tag="paper-menu-button" url="example/paper_menu_button.html")
+  %core-item(label="Dialog" tag="paper-dialog" url="example/paper_dialog.html")
+  %core-item(label="Shadow" tag="paper-shadow" url="example/paper_shadow.html")
+  %core-item(label="Toast" tag="paper-toast" url="example/paper_toast.html")

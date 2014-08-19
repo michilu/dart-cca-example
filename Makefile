@@ -67,17 +67,20 @@ RELEASE_RESOURCE=\
 	$(foreach path,$(HTML) $(VERSION),$(subst lib,web/packages/cca_base,$(path)))\
 	$(JSON)\
 	$(shell find web/icons -name "*.png")\
-	web/js/app.js\
+	$(shell find web/example -name "*.html")\
 	web/js/browser_dart_csp_safe.js\
 	web/js/main.js\
 	web/packages/browser/dart.js\
 	web/packages/chrome/bootstrap.js\
+	web/packages/polymer/src/js/polymer/polymer.js\
+	web/packages/web_components/dart_support.js\
+	web/packages/web_components/platform.js\
 
 RELEASE_CHROME_APPS_RESOURCE=$(RELEASE_RESOURCE) web/main.dart
 RELEASE_CORDOVA_RESOURCE=$(RELEASE_RESOURCE)
 
 RELEASE_CHROME_APPS=$(RELEASE_DIR)/chrome-apps
-RELEASE_RESOURCE_DIR=ionic-v1.0.0-beta.10
+RELEASE_RESOURCE_DIR=
 RELEASE_CHROME_APPS_RESOURCE_DIR=$(foreach path,$(RELEASE_RESOURCE_DIR),$(addprefix $(RELEASE_CHROME_APPS)/,$(path)))
 BUILD_DIR=build
 RELEASE_RESOURCE_SRC_DIR=$(BUILD_DIR)/web
@@ -85,11 +88,18 @@ RELEASE_CHROME_APPS_RESOURCE_SRC=$(addprefix $(BUILD_DIR)/,$(RELEASE_CHROME_APPS
 RELEASE_CHROME_APPS_RESOURCE_DST=$(foreach path,$(RELEASE_CHROME_APPS_RESOURCE_SRC),$(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path)))
 CHROME_APPS_DART_JS=chrome-apps-dart-js
 chrome-apps: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(RELEASE_CHROME_APPS) $(CHROME_APPS_DART_JS) $(RELEASE_CHROME_APPS_RESOURCE_DST)
-	make $(RELEASE_CHROME_APPS_RESOURCE_DIR)
+	@if [ "$(strip $(RELEASE_CHROME_APPS_RESOURCE_DIR))" != "" ]; then\
+		make $(RELEASE_CHROME_APPS_RESOURCE_DIR);\
+	fi;
 	@if [ $(DART_JS) -nt $(RELEASE_CHROME_APPS)/main.dart.precompiled.js ]; then\
 		echo "cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js;\
 	fi;
+	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html.*.js" -or -name "*.html_bootstrap.dart.precompiled.js"),$(shell\
+		if [ $(path) -nt $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path)) ]; then\
+			cp $(path) $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path));\
+		fi;\
+	))
 	cd $(RELEASE_DIR) && zip -r -9 -FS chrome-apps.zip chrome-apps
 
 $(RELEASE_CHROME_APPS): $(RELEASE_DIR)
@@ -107,7 +117,9 @@ $(RELEASE_CHROME_APPS_RESOURCE_DST): $(RELEASE_CHROME_APPS_RESOURCE_SRC) $(CHROM
 	@if [ ! -d $(dir $@) ]; then\
 		mkdir -p $(dir $@);\
 	fi;
-	cp $(subst $(RELEASE_CHROME_APPS),$(RELEASE_RESOURCE_SRC_DIR),$@) $@
+	@if [ $(subst $(RELEASE_CHROME_APPS),$(RELEASE_RESOURCE_SRC_DIR),$@) -nt $@ ]; then\
+		cp $(subst $(RELEASE_CHROME_APPS),$(RELEASE_RESOURCE_SRC_DIR),$@) $@;\
+	fi;
 
 $(RELEASE_DIR)/%: %
 	@mkdir -p $(dir $@)
@@ -150,11 +162,18 @@ CORDOVA_DART_JS=cordova-dart-js
 CORDOVA_PLUGINS_TXT=cordova-plugins.txt
 CORDOVA_PLUGINS=$(foreach plugin,$(shell cat $(CORDOVA_PLUGINS_TXT)),$(subst submodule/,../../submodule/,$(plugin)))
 $(RELEASE_IOS): $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(BUILD_RESOURCE) $(RELEASE_CORDOVA) $(CORDOVA_DART_JS) $(RELEASE_CORDOVA_RESOURCE_DST) $(CORDOVA_PLUGINS_TXT)
-	make $(RELEASE_CORDOVA_RESOURCE_DIR)
+	@if [ "$(strip $(RELEASE_CORDOVA_RESOURCE_DIR))" != "" ]; then\
+		make $(RELEASE_CORDOVA_RESOURCE_DIR);\
+	fi;
 	@if [ $(DART_JS) -nt $(RELEASE_CORDOVA)/main.dart.precompiled.js ]; then\
 		echo "cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js;\
 	fi;
+	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html.*.js" -or -name "*.html_bootstrap.dart.precompiled.js"),$(shell\
+		if [ $(path) -nt $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CORDOVA),$(path)) ]; then\
+			cp $(path) $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CORDOVA),$(path));\
+		fi;\
+	))
 	@if ! (cd $@ && cca prepare); then\
 		echo "rm -rf $@";\
 		rm -rf $@;\
@@ -191,7 +210,9 @@ $(RELEASE_CORDOVA_RESOURCE_DST): $(RELEASE_CORDOVA_RESOURCE_SRC) $(CORDOVA_DART_
 	@if [ ! -d $(dir $@) ]; then\
 		mkdir -p $(dir $@);\
 	fi;
-	cp $(subst $(RELEASE_CORDOVA),$(RELEASE_RESOURCE_SRC_DIR),$@) $@
+	@if [ $(subst $(RELEASE_CORDOVA),$(RELEASE_RESOURCE_SRC_DIR),$@) -nt $@ ]; then\
+		cp $(subst $(RELEASE_CORDOVA),$(RELEASE_RESOURCE_SRC_DIR),$@) $@;\
+	fi;
 
 $(RELEASE_CORDOVA_RESOURCE_DIR): $(foreach path,$(RELEASE_RESOURCE_DIR),$(addprefix $(RELEASE_RESOURCE_SRC_DIR)/,$(path)))
 	cp -r $(subst $(RELEASE_CORDOVA),$(RELEASE_RESOURCE_SRC_DIR),$@) $@
