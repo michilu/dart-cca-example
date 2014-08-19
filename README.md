@@ -1,7 +1,18 @@
 dart-cca-example
 ================
 
-An example of Cordova Chrome Apps written in AngularDart.
+An example of Cordova Chrome Apps written in Dart.
+
+Features
+--------
+
+* run on Chrome Apps(Windows/Mac OS X/Linux), iOS app and other
+* Cordova, HTML5 interface and native device features
+* paper elements(Material Design)
+* AngularDart
+* supports access to API via Google Cloud Endpoints(ProtoRPC over JSON-RPC 2)
+* debugging on Dartium(Chrome that Dart supports)
+* debugging on iOS Simulator/iOS device with Safari Web Inspector
 
 Set up
 ------
