@@ -191,7 +191,7 @@ CORDOVA_DART_JS=cordova-dart-js
 CORDOVA_PLUGINS_TXT=cordova-plugins.txt
 CORDOVA_PLUGINS=$(foreach plugin,$(shell cat $(CORDOVA_PLUGINS_TXT)),$(subst submodule/,../../submodule/,$(plugin)))
 $(RELEASE_IOS): $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(BUILD_RESOURCE) $(RELEASE_CORDOVA) $(CORDOVA_DART_JS) $(RELEASE_CORDOVA_RESOURCE_DST) $(CORDOVA_PLUGINS_TXT)
-	make $(RELEASE_CORDOVA_RESOURCE_DIR)
+	#make $(RELEASE_CORDOVA_RESOURCE_DIR)
 	@if [ $(DART_JS) -nt $(RELEASE_CORDOVA)/main.dart.precompiled.js ]; then\
 		echo "cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js;\
