@@ -14,6 +14,13 @@ Features
 * debugging on Dartium(Chrome that Dart supports)
 * debugging on iOS Simulator/iOS device with Safari Web Inspector
 
+Screenshot
+----------
+
+![run on Chrome Apps (2014/08/20)](https://cloud.githubusercontent.com/assets/15713/3974912/386eb7dc-27fd-11e4-8602-92beb922ef23.png)
+
+[and more...](https://github.com/MiCHiLU/dart-cca-example/wiki/screenshot)
+
 Set up
 ------
 
