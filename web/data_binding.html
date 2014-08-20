@@ -1,12 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta content='width=device-width, initial-scale=1, user-scalable=no' name='viewport'>
 <title>paper-input</title>
-<script src="packages/web_components/platform.js"></script>
-<script src="packages/web_components/dart_support.js"></script>
-<link rel="import" href="packages/paper_elements/roboto.html">
-<link rel="import" href="packages/paper_elements/paper_input.html">
+<script src='packages/web_components/platform.js'></script>
+<script src='packages/web_components/dart_support.js'></script>
+<link href='packages/paper_elements/roboto.html' rel='import'>
+<link href='packages/paper_elements/paper_input.html' rel='import'>
 <style shim-shadowdom>
 body {
 font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
@@ -20,26 +19,26 @@ user-select: none;
 -webkit-touch-callout: none;
 }
 </style>
-</head>
-<body unresolved touch-action="auto">
+<body touch-action='auto' unresolved>
 <section>
-<paper-input label="Type something..."></paper-input>
+<paper-input label='Type something...'></paper-input>
 <br>
-<paper-input label="Type only numbers..." validate="^[0-9]*$" error="Input is not a number!"></paper-input>
+<paper-input error='Input is not a number!' label='Type only numbers...' validate='^[0-9]*$'></paper-input>
 <br>
 <paper-input disabled label="I'm disabled"></paper-input>
 <br>
-<paper-input floatingLabel label="Floating label"></paper-input>
+<paper-input floatingLabel label='Floating label'></paper-input>
 <br>
-<paper-input floatingLabel label="Type only numbers... (floating)" validate="^[0-9]*$" error="Input is not a number!"></paper-input>
+<paper-input error='Input is not a number!' floatingLabel label='Type only numbers... (floating)' validate='^[0-9]*$'></paper-input>
 <br>
-<paper-input multiline label="Type multiple lines here..."></paper-input>
+<paper-input label='Type multiple lines here...' multiline></paper-input>
 <br>
-<paper-input multiline rows="3" label="This input is 3 rows high"></paper-input>
+<paper-input label='This input is 3 rows high' multiline rows='3'></paper-input>
 <br>
-<paper-input multiline maxRows="3" label="This input is at most 3 rows high"></paper-input>
+<paper-input label='This input is at most 3 rows high' maxRows='3' multiline></paper-input>
 <br>
-<paper-input multiline floatingLabel label="Multiple lines and a floating label"></paper-input>
+<paper-input floatingLabel label='Multiple lines and a floating label' multiline></paper-input>
 </section>
-<script type="application/dart">export 'package:polymer/init.dart';</script>
-</body>
+<script type='application/dart'>
+export 'package:polymer/init.dart';
+</script>
