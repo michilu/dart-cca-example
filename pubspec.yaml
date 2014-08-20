@@ -23,6 +23,7 @@ transformers:
     csp: true
     entry_points:
     - web/index.html
+    - web/data_binding.html
     #- web/example/core_scroll_header_panel.html
     #- web/example/paper_button.html
     #- web/example/paper_button2.html
