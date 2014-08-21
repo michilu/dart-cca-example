@@ -4,6 +4,7 @@
 %title paper-input
 %script(src="packages/web_components/platform.js")
 %script(src="packages/web_components/dart_support.js")
+%link(rel="import" href="my_element.html")
 %link(rel="import" href="packages/paper_elements/roboto.html")
 %link(rel="import" href="packages/paper_elements/paper_input.html")
 %style(shim-shadowdom)
@@ -19,6 +20,23 @@
   \-webkit-touch-callout: none;
   }
 %body(unresolved touch-action="auto")/
+
+/
+  don't put ng-app on html or body. the polymer build inlines
+  custom elements definitions, which can trigger bugs if the code
+  inlined is inside of ng-app
+
+%div(ng-app)
+  %h1 Angular and Polymer
+  %h2 Sitting in a DOM tree, k-i-s-s-i-n-g
+  %section
+    %p Angular
+    %p
+      %input(type="text" ng-model="cool") Angular binding: {{cool}}
+  %section
+    %p Polymer
+    %my-element(message="[[ cool ]]")
+
 %section
   %paper-input(label="Type something...")
   %br/
