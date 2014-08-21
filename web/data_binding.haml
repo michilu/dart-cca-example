@@ -8,6 +8,12 @@
 %link(rel="import" href="packages/paper_elements/roboto.html")
 %link(rel="import" href="packages/paper_elements/paper_input.html")
 %style(shim-shadowdom)
+  .ng-show {
+  display: block !important;
+  }
+  [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+  display: none !important;
+  }
   body {
   font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
   margin: 0;
@@ -19,7 +25,7 @@
   \-webkit-tap-highlight-color: rgba(0,0,0,0);
   \-webkit-touch-callout: none;
   }
-%body(ng-app unresolved touch-action="auto")/
+%body(ng-app ng-cloak unresolved touch-action="auto")/
 
 %h1 Angular and Polymer
 %h2 Sitting in a DOM tree, k-i-s-s-i-n-g
