@@ -16,7 +16,7 @@ dependency_overrides:
   polymer:
     git:
       url: https://github.com/MiCHiLU/polymer.dart.git
-      ref: master
+      ref: 164a558cca9def53e0bada37de058108d2b7acba
   web_components: ">=0.5.0 <0.6.0"
 transformers:
 - polymer:
