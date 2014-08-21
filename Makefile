@@ -95,9 +95,14 @@ chrome-apps: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(RELEASE_CHROME_APPS) $(CH
 		echo "cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CHROME_APPS)/main.dart.precompiled.js;\
 	fi;
-	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html.*.js" -or -name "*.html_bootstrap.dart.precompiled.js"),$(shell\
+	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html.*.js"),$(shell\
 		if [ $(path) -nt $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path)) ]; then\
 			cp $(path) $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path));\
+		fi;\
+	))
+	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html_bootstrap.dart.precompiled.js"),$(shell\
+		if [ $(path) -nt $(subst .precompiled.js,.js,$(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path))) ]; then\
+			cp $(path) $(subst .precompiled.js,.js,$(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CHROME_APPS),$(path)));\
 		fi;\
 	))
 	cd $(RELEASE_DIR) && zip -r -9 -FS chrome-apps.zip chrome-apps
@@ -169,9 +174,14 @@ $(RELEASE_IOS): $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE) $(BUILD_RESOURCE) $(RELE
 		echo "cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js";\
 		cp $(DART_JS) $(RELEASE_CORDOVA)/main.dart.precompiled.js;\
 	fi;
-	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html.*.js" -or -name "*.html_bootstrap.dart.precompiled.js"),$(shell\
+	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html.*.js"),$(shell\
 		if [ $(path) -nt $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CORDOVA),$(path)) ]; then\
 			cp $(path) $(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CORDOVA),$(path));\
+		fi;\
+	))
+	$(foreach path,$(shell find $(RELEASE_RESOURCE_SRC_DIR) -name "*.html_bootstrap.dart.precompiled.js"),$(shell\
+		if [ $(path) -nt $(subst .precompiled.js,.js,$(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CORDOVA),$(path))) ]; then\
+			cp $(path) $(subst .precompiled.js,.js,$(subst $(RELEASE_RESOURCE_SRC_DIR),$(RELEASE_CORDOVA),$(path)));\
 		fi;\
 	))
 	@if ! (cd $@ && cca prepare); then\
