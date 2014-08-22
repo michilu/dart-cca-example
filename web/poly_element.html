@@ -1,4 +1,4 @@
-<polymer-element name="my-element">
+<polymer-element name="poly-element">
   <template>
     <p>
       <input type="text" value="{{message}}"> Polymer binding: {{message}}
@@ -8,11 +8,11 @@
 import 'package:polymer/polymer.dart'; // I want to use show here,
                                        // bug http://dartbug.com/16555
 
-@CustomTag('my-element')
-class MyElement extends PolymerElement {
+@CustomTag('poly-element')
+class PolyElement extends PolymerElement {
   @published String message = 'bindings are neat!';
 
-  MyElement.created() : super.created();
+  PolyElement.created() : super.created();
 }
   </script>
 </polymer-element>
