@@ -213,7 +213,7 @@ $(RELEASE_CORDOVA): $(RELEASE_DIR)
 	mkdir -p $@
 
 $(CORDOVA_DART_JS):
-	-patch -p1 --forward -i pubbuild.patch
+	-patch -p1 --forward --reverse -i pubbuild.patch
 	make $(DART_JS)
 
 $(RELEASE_CORDOVA_RESOURCE_DST): $(RELEASE_CORDOVA_RESOURCE_SRC) $(CORDOVA_DART_JS)
