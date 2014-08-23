@@ -1,0 +1,24 @@
+<link rel="import" href="packages/paper_elements/paper_input.html">
+
+<polymer-element name="paper-element">
+
+  <template>
+    <p>
+      <paper-input floatingLabel label="Paper Elements" inputValue="{{message}}"></paper-input>
+      Polymer binding: {{message}}
+    </p>
+  </template>
+
+  <script type="application/dart">
+import 'package:polymer/polymer.dart'; // I want to use show here,
+                                       // bug http://dartbug.com/16555
+
+@CustomTag('paper-element')
+class PaperElement extends PolymerElement {
+  @published String message = 'bindings are neat!';
+
+  PaperElement.created() : super.created();
+}
+  </script>
+
+</polymer-element>
