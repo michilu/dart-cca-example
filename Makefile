@@ -63,6 +63,11 @@ $(VERSION): web/manifest.json
 	sed -i "" -e "s/\$${AUTO_COUNT}/$(AUTO_COUNT_SINCE).$(AUTO_COUNT_LOG)/" web/manifest.json
 
 
+js-serve: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE)
+	make $(DART_JS)
+	cd $(RELEASE_RESOURCE_SRC_DIR) && python -m SimpleHTTPServer
+
+
 RELEASE_RESOURCE=\
 	$(foreach path,$(HTML) $(VERSION),$(subst lib,web/packages/cca_base,$(path)))\
 	$(JSON)\
