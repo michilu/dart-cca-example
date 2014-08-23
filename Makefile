@@ -38,11 +38,9 @@ resource: $(VERSION) $(RESOURCE)
 
 
 pubserve: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE)
-	-patch -p1 --forward --reverse -i pubbuild.patch
 	pub serve --port 8080 --no-dart2js
 
 pubserve-force-poll: $(VERSION) $(ENDPOINTS_LIB) $(RESOURCE)
-	-patch -p1 --forward --reverse -i pubbuild.patch
 	pub serve --port 8080 --no-dart2js --force-poll
 
 DISCOVERY=assets/echo-v1.discovery
@@ -120,7 +118,6 @@ $(RELEASE_DIR):
 
 DART_JS=$(BUILD_DIR)/web/main.dart.precompiled.js
 $(CHROME_APPS_DART_JS):
-	-patch -p1 --forward --reverse -i pubbuild.patch
 	make $(DART_JS)
 
 $(RELEASE_CHROME_APPS_RESOURCE_DST): $(RELEASE_CHROME_APPS_RESOURCE_SRC) $(CHROME_APPS_DART_JS)
@@ -218,7 +215,6 @@ $(RELEASE_CORDOVA): $(RELEASE_DIR)
 	mkdir -p $@
 
 $(CORDOVA_DART_JS):
-	-patch -p1 --forward --reverse -i pubbuild.patch
 	make $(DART_JS)
 
 $(RELEASE_CORDOVA_RESOURCE_DST): $(RELEASE_CORDOVA_RESOURCE_SRC) $(CORDOVA_DART_JS)
@@ -242,7 +238,6 @@ clean:
 	rm -f $(VERSION) $(RESOURCE)
 	rm -rf $(BUILD_DIR) $(RELEASE_DIR)
 	git checkout release/ios/config.xml
-	-patch -p1 --forward --reverse -i pubbuild.patch
 
 clean-all: clean
 	rm -f pubspec.lock pubspec.yaml.orig pubspec.yaml.rej
