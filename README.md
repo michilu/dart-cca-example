@@ -8,8 +8,8 @@ Features
 
 * run on Chrome Apps(Windows/Mac OS X/Linux), iOS app and other
 * Cordova, HTML5 interface and native device features
-* paper elements(Material Design)
-* AngularDart
+* Polymer paper elements - Material Design
+* data binding both AngularDart and Polymer paper elements
 * supports access to API via Google Cloud Endpoints(ProtoRPC over JSON-RPC 2)
 * debugging on Dartium(Chrome that Dart supports)
 * debugging on iOS Simulator/iOS device with Safari Web Inspector
